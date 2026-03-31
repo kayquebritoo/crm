@@ -1,0 +1,21 @@
+{
+  "name": "Kayque Brito CRM",
+  "short_name": "Kayque Brito CRM",
+  "theme_color": "#11101E",
+  "background_color": "#11101E",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

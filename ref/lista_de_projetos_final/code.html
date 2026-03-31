@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#2a2837",
+              "secondary": "#a0cafc",
+              "surface-container-lowest": "#0e0d1a",
+              "on-tertiary": "#322f34",
+              "primary": "#a5e7ff",
+              "surface-tint": "#47d6ff",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              "tertiary-container": "#c5bfc5",
+              "on-surface-variant": "#bbc9cf",
+              "inverse-on-surface": "#302f3e",
+              "on-secondary-container": "#92bced",
+              "on-secondary-fixed": "#001d36",
+              "on-error": "#690005",
+              "surface-variant": "#353343",
+              "primary-fixed-dim": "#47d6ff",
+              "tertiary-fixed": "#e7e0e6",
+              "surface": "#131220",
+              "on-tertiary-fixed": "#1d1b1f",
+              "on-primary": "#003543",
+              "on-primary-fixed-variant": "#004e60",
+              "error": "#ffb4ab",
+              "on-primary-container": "#00566a",
+              "on-primary-fixed": "#001f28",
+              "primary-container": "#00d2ff",
+              "surface-dim": "#131220",
+              "tertiary": "#e1dbe1",
+              "surface-bright": "#393747",
+              "secondary-fixed": "#d1e4ff",
+              "on-tertiary-fixed-variant": "#49454a",
+              "outline-variant": "#3c494e",
+              "outline": "#859399",
+              "on-secondary-fixed-variant": "#1a4974",
+              "secondary-container": "#1d4b77",
+              "background": "#11101E",
+              "surface-container-highest": "#353343",
+              "inverse-primary": "#00677f",
+              "on-surface": "#e4e0f5",
+              "surface-container-low": "#1b1a28",
+              "secondary-fixed-dim": "#a0cafc",
+              "on-background": "#e4e0f5",
+              "on-secondary": "#003258",
+              "inverse-surface": "#e4e0f5",
+              "on-tertiary-container": "#514d52",
+              "surface-container": "#1f1e2d",
+              "primary-fixed": "#b6ebff",
+              "tertiary-fixed-dim": "#cbc5ca"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(53, 51, 67, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(165, 231, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .glass-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.05;
+        pointer-events: none;
+      }
+      .animated-bg {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: #11101E;
+        overflow: hidden;
+      }
+      .sphere {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.25;
+        animation: float 15s ease-in-out infinite alternate;
+      }
+      @keyframes float {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(20px, 30px) scale(1.1); }
+      }
+    </style>
+<style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<div class="animated-bg">
+<div class="sphere w-[500px] h-[500px] bg-primary/20 -top-48 -left-24"></div>
+<div class="sphere w-[400px] h-[400px] bg-secondary-container/30 bottom-12 -right-12" style="animation-delay: -5s;"></div>
+<div class="sphere w-[300px] h-[300px] bg-on-secondary/10 top-1/2 left-1/3" style="animation-delay: -10s;"></div>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-900/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,210,255,0.08)] flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/30 cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_30}}'">
+<img alt="Avatar" data-alt="close-up portrait of a professional male user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVcEhcxHOxjhmc85G1WMwYZtOPP1S7TECzsFT7bR-eFMWG0Ylxy9vXZFXSjZLywPhhdc09s7Vl2UHGv8wCbXpHPTxo8XE_Xn2QIgYkK_3yvCFiLSRx71kkTDXIr0qj8RdJi5TVdkzh8CXmL0rHSnXRfR4U3xwvBnfi_fz8dBSNWCPn05IDVFTSwZGaq9Vnw6qsAZyIJYSgr65vyPcAZmlwDYH66Ufz4X-ztF6EBrzGGWMXsrvIttdTcW18FzhvLS9nANUWKLUjPQ"/>
+</div>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<img alt="Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhyninA9KX2Bvi7l-XqRcJdz38z615RfSTk9VFnBBZH4DQ7fZTWbl68G_Hb85aJQnm3wm1ud-KfzTU-lZCmeEFSL9J3LoCP5Oum0yelGsdM8NNUD35SHE-G7hgig4KPHhKD40p3Bu076_tQzRdEeoXAqwt3IdZz9wj3HLVTGJslGFY_vYlaxtPixYypUFkJzA1DxIPh3ZA9JXYNbrM0mPtNUEftC8-_i6FlwGWlrvji8-qPnRx_CHTHM3HltUw7sb6XNHiYhanT"/>
+</div>
+<button class="text-cyan-400 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto">
+<!-- Search & Filter Section -->
+<section class="mb-10 space-y-6">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface">Projetos</h2>
+<p class="font-label text-sm text-outline tracking-wider uppercase">Visão geral do ecossistema</p>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-outline group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-surface-variant focus:border-primary focus:ring-0 text-on-surface placeholder:text-outline/50 py-4 pl-12 pr-4 transition-all duration-300 font-body" placeholder="Pesquisar projetos ou clientes..." type="text"/>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-6 py-2 rounded-full bg-primary-container text-on-primary font-label text-xs font-bold tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(0,210,255,0.3)]">Todos</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant font-label text-xs font-bold tracking-widest uppercase hover:text-primary transition-all">Ativos</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant font-label text-xs font-bold tracking-widest uppercase hover:text-primary transition-all">Finalizados</button>
+</div>
+</section>
+<!-- Project Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-6 hover:scale-[1.01] transition-transform duration-300 group cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_32}}'">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label text-[10px] text-primary tracking-[0.1em] uppercase">Tech Solutions</span>
+<h3 class="font-headline text-xl font-bold text-on-surface">Migração Cloud 2.0</h3>
+</div>
+<div class="px-3 py-1 rounded-full bg-secondary-container/50 text-secondary text-[10px] font-bold uppercase tracking-wider border border-secondary/20">
+                    Ativo
+                </div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-high" data-alt="minimalist user avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvVugzxmDeeEi9jQt8X3ibBg6vp1Z3NXNe6SWYQiLvMVOmDJb9nnlcNVzOcezjq4xUkRW5mi3jgbmjNRUs4F2qT4CUIf89LVsK4i1KU9ZgPPSTtYSk0feyMDGVgzvX-XswtEsYHFECdj4r5Aw6HB-tUPTJsdNOfK4aNujiA8vqim0nbsJSb-bwWKK764WNVLmM_k1NxfiAxUTjmWeaoaCA9HV1tHMvYD5jF_o8Pj-jJwMx001KukYEFprugaPCnNQVKT0j4otSBw"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-high" data-alt="minimalist user avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzCUvs6GueX0d-nS3GaIjS1MuPAu40f-Mf6Y8nGabsWLzoj0fncJomu0IRSpzmCU8Rn09DcxMSVdCEVS8KsRfg99cvSI7VC5DjAJXv6OmJV0CBLHObbVMK9mjFHXLLuNYo5AfPWYNpX2KaQJ6-GO8VFrgTUwcGT6JjItMWAno54yKwJK2bkYUxITjX4kw4QZjwoBu0hjB3FHDDPTTYYS8g-8qXcV1HvPjuLqK2GTZ4HOfrHG4Er1msoUBRgZ-jypyOx-OEdQAPVw"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-high bg-surface-variant flex items-center justify-center text-[10px] font-bold text-outline">+3</div>
+</div>
+<span class="font-label text-xs text-outline">75% concluído</span>
+</div>
+<div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container w-3/4 shadow-[0_0_8px_rgba(0,210,255,0.5)]"></div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+<span class="text-xs font-body">Entrega: 12 Out</span>
+</div>
+<button class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-6 hover:scale-[1.01] transition-transform duration-300 group cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_32}}'">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label text-[10px] text-primary tracking-[0.1em] uppercase">Lumina Media</span>
+<h3 class="font-headline text-xl font-bold text-on-surface">Branding Global</h3>
+</div>
+<div class="px-3 py-1 rounded-full bg-secondary-container/50 text-secondary text-[10px] font-bold uppercase tracking-wider border border-secondary/20">
+                    Ativo
+                </div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-high" data-alt="minimalist user avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb5TKgNwaidy-ooQGczJ4sNPgywSD2Px31k0pfy4XY8NIAYY7oIuJCEmmUVLQ2tnDY1E__7-7YLThyZCCyU4Eo93PZYg7IAsrDoS19O7W_CPYNKwvFyCUg9JAg0U5_zFRhg4Yo9z1w9rq1Ub2iRR8T8DC_c75uezjf-zvyNAOQL9iLbbBUoZQ7BXvFBVucgyk1fTPJLIUh4sCuFRurCUszeRp1Sw9OWDrP9sej1Gf8iDLPUB9qz0pdndJqeuaE6ubLlYZLBnDrQg"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-high" data-alt="minimalist user avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByxIJR0Etv3VR9IHbvDhf1gq693OSnOXVFuR_g7LZiTj0jQOfNTPF4ewkIbnuHl67z9cYzN3B_ughzhgRJwJwKigfE9Om5TsivKi0F9niFoDh2N5W4QZuGc-M2tt4YorDgagJcXIuKaval9rzwS_gMmXYk6VMdpi3EKxzLCw5WckeeRfoB-Wcp6j8dPTK_82adWhmJByHVfimCc8nxunUiO3X9vwKmgD4hz2Zra7HcjoThRUpnzYC0q3PSvJR3L-D06zwXhCj1yQ"/>
+</div>
+<span class="font-label text-xs text-outline">40% concluído</span>
+</div>
+<div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container w-2/5 shadow-[0_0_8px_rgba(0,210,255,0.5)]"></div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+<span class="text-xs font-body">Entrega: 28 Nov</span>
+</div>
+<button class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-6 hover:scale-[1.01] transition-transform duration-300 group opacity-80 cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_32}}'">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="font-label text-[10px] text-outline tracking-[0.1em] uppercase">Horizon Corp</span>
+<h3 class="font-headline text-xl font-bold text-on-surface">Revisão Fiscal</h3>
+</div>
+<div class="px-3 py-1 rounded-full bg-surface-variant text-outline-variant text-[10px] font-bold uppercase tracking-wider">
+                    Finalizado
+                </div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-high" data-alt="minimalist user avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEa9z2_wttZ_q5BVIWPkxwssQqCvYgne_iYMPHqpuTgEaDD8aQBP0eT54defY9IlkL98QMEyJMOYOXeaIioy5t6i09N6w149MDrzx5YRY3XIp6dyQBkTabviSsLTBjp3L5IXcE4sACCq8IB-40YNJ0pZ_-JDFjaBrUVnCxxb9VcTLBOyl-K4FKaMZWxc5cHKZIGbGkb-C0V9XjCVOz9j15rx5yfe9ZKMB0scy3UlDF68Hwdnslbwwm9eJTwb1oFjOaimqz0U8udA"/>
+</div>
+<span class="font-label text-xs text-outline">100% concluído</span>
+</div>
+<div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-full"></div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span class="text-xs font-body">Concluído em Ago</span>
+</div>
+<button class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-outline transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4 (Add Project) -->
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-center items-center gap-4 border-dashed border-2 border-primary/20 hover:border-primary/50 transition-colors cursor-pointer group" onclick="window.location.href='{{DATA:SCREEN:SCREEN_32}}'">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</div>
+<div class="text-center">
+<h3 class="font-headline text-lg font-bold text-primary">Novo Projeto</h3>
+<p class="font-body text-xs text-outline">Expandir portfólio</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#131220]/80 backdrop-blur-2xl flex justify-around items-center px-4 pb-safe z-50 border-t border-white/5 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 active:scale-90 transition-all duration-300 ease-out" href="{{DATA:SCREEN:SCREEN_17}}">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-cyan-400 scale-110 brightness-125 active:scale-90 transition-all duration-300 ease-out" href="{{DATA:SCREEN:SCREEN_20}}">
+<span class="material-symbols-outlined" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Projetos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 active:scale-90 transition-all duration-300 ease-out" href="{{DATA:SCREEN:SCREEN_32}}">
+<span class="material-symbols-outlined text-3xl text-cyan-400" data-icon="add_circle">add_circle</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Novo</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 active:scale-90 transition-all duration-300 ease-out" href="{{DATA:SCREEN:SCREEN_30}}">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Perfil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 active:scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Ajustes</span>
+</a>
+</nav>
+</body></html>

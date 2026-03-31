@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Obsidian CRM | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#2a2837",
+              "secondary": "#a0cafc",
+              "surface-container-lowest": "#0e0d1a",
+              "on-tertiary": "#322f34",
+              "primary": "#a5e7ff",
+              "surface-tint": "#47d6ff",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              "tertiary-container": "#c5bfc5",
+              "on-surface-variant": "#bbc9cf",
+              "inverse-on-surface": "#302f3e",
+              "on-secondary-container": "#92bced",
+              "on-secondary-fixed": "#001d36",
+              "on-error": "#690005",
+              "surface-variant": "#353343",
+              "primary-fixed-dim": "#47d6ff",
+              "tertiary-fixed": "#e7e0e6",
+              "surface": "#131220",
+              "on-tertiary-fixed": "#1d1b1f",
+              "on-primary": "#003543",
+              "on-primary-fixed-variant": "#004e60",
+              "error": "#ffb4ab",
+              "on-primary-container": "#00566a",
+              "on-primary-fixed": "#001f28",
+              "primary-container": "#00d2ff",
+              "surface-dim": "#131220",
+              "tertiary": "#e1dbe1",
+              "surface-bright": "#393747",
+              "secondary-fixed": "#d1e4ff",
+              "on-tertiary-fixed-variant": "#49454a",
+              "outline-variant": "#3c494e",
+              "outline": "#859399",
+              "on-secondary-fixed-variant": "#1a4974",
+              "secondary-container": "#1d4b77",
+              "background": "#11101E",
+              "surface-container-highest": "#353343",
+              "inverse-primary": "#00677f",
+              "on-surface": "#e4e0f5",
+              "surface-container-low": "#1b1a28",
+              "secondary-fixed-dim": "#a0cafc",
+              "on-background": "#e4e0f5",
+              "on-secondary": "#003258",
+              "inverse-surface": "#e4e0f5",
+              "on-tertiary-container": "#514d52",
+              "surface-container": "#1f1e2d",
+              "primary-fixed": "#b6ebff",
+              "tertiary-fixed-dim": "#cbc5ca"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(53, 51, 67, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(165, 231, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .refractive-border {
+            border-top: 1px solid rgba(165, 231, 255, 0.2);
+            border-left: 1px solid rgba(165, 231, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.05);
+            border-right: 1px solid rgba(0, 210, 255, 0.05);
+        }
+        .animated-bg {
+            background: #11101E;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30 selection:text-primary">
+<!-- Animated Background Spheres -->
+<div class="animated-bg">
+<div class="sphere bg-primary w-[500px] h-[500px] -top-40 -left-40"></div>
+<div class="sphere bg-secondary w-[400px] h-[400px] top-1/2 -right-20" style="animation-delay: -5s;"></div>
+<div class="sphere bg-primary-container w-[300px] h-[300px] bottom-10 left-1/3" style="animation-delay: -10s;"></div>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-900/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,210,255,0.08)] flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<a class="w-8 h-8 rounded-full overflow-hidden border border-primary/30 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_30}}">
+<img alt="Kayque Brito" data-alt="close-up portrait of a young male professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDogpv72LrwEbQ4-1Og8VCfNo3g6i8zyYRFQc2l_HxL7BPQNEm71vkks0WUQPrM84hSOg8unfg2XK-ZWECtBe_fmDcmCLmcJl6U75qrE2T_T_U6zSk9uTvn997pVuhwS44vPY4gDQhWYmRj0iHO_wc6D8oZURqSgQrQwrMHJXJGDy0NgzyE5q7nTeD42k-uQTYIbSmXis1VosATUYpONbqMwpPGFHFrHSnTbmM9L3as9iyNIPu1GvHBo5S7tzPdzImGWfgSOk9nvg"/>
+</a>
+<span class="text-on-surface-variant font-label text-[10px] tracking-widest hidden md:block">PAINEL ADMIN</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<img alt="Logo" class="h-6 w-auto object-contain brightness-0 invert opacity-90" src="https://lh3.googleusercontent.com/aida/ADBb0uhyninA9KX2Bvi7l-XqRcJdz38z615RfSTk9VFnBBZH4DQ7fZTWbl68G_Hb85aJQnm3wm1ud-KfzTU-lZCmeEFSL9J3LoCP5Oum0yelGsdM8NNUD35SHE-G7hgig4KPHhKD40p3Bu076_tQzRdEeoXAqwt3IdZz9wj3HLVTGJslGFY_vYlaxtPixYypUFkJzA1DxIPh3ZA9JXYNbrM0mPtNUEftC8-_i6FlwGWlrvji8-qPnRx_CHTHM3HltUw7sb6XNHiYhanT"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform duration-200 text-zinc-400 hover:text-cyan-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="active:scale-95 transition-transform duration-200 text-zinc-400 hover:text-cyan-300">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto space-y-10">
+<!-- Header Section -->
+<section class="space-y-2">
+<h2 class="font-headline text-primary font-bold tracking-tight text-4xl md:text-5xl">
+            Olá, Kayque.
+        </h2>
+<p class="text-on-surface-variant font-body text-lg opacity-80">Aqui está o pulso das suas operações hoje.</p>
+</section>
+<!-- Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="glass-panel md:col-span-2 p-8 rounded-3xl refractive-border flex flex-col justify-between min-h-[220px]">
+<div class="flex justify-between items-start">
+<span class="label-sm font-label uppercase tracking-[0.05em] text-primary/70">Receita Total Anual</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<div class="font-headline text-4xl font-bold tracking-tighter text-white">R$ 482.950,00</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-primary-container text-sm font-medium">↑ 12.5%</span>
+<span class="text-zinc-500 text-sm">em relação ao mês anterior</span>
+</div>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-3xl refractive-border flex flex-col justify-between">
+<span class="label-sm font-label uppercase tracking-[0.05em] text-on-surface-variant">Projetos Ativos</span>
+<div>
+<div class="font-headline text-5xl font-bold tracking-tighter text-cyan-400">14</div>
+<p class="text-zinc-500 text-xs mt-1">4 em fase de entrega</p>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-3xl refractive-border flex flex-col justify-between">
+<span class="label-sm font-label uppercase tracking-[0.05em] text-on-surface-variant">Finalizados</span>
+<div>
+<div class="font-headline text-5xl font-bold tracking-tighter text-secondary">07</div>
+<p class="text-zinc-500 text-xs mt-1">Meta mensal: 10</p>
+</div>
+</div>
+</section>
+<!-- Projects & Leads Flex Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<!-- Projects Gallery (2/3) -->
+<section class="lg:col-span-2 space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-headline text-2xl font-bold tracking-tight text-white">Projetos em Destaque</h3>
+<a class="text-primary text-sm font-label hover:underline decoration-primary/30 uppercase" href="{{DATA:SCREEN:SCREEN_20}}">Ver Todos</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Project Card 1 -->
+<a class="glass-panel rounded-3xl overflow-hidden group refractive-border block active:scale-[0.98] transition-transform duration-300" href="{{DATA:SCREEN:SCREEN_32}}">
+<div class="h-40 bg-surface-container-lowest relative">
+<img alt="Tech Dashboard" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaeKhdgvSxOudcVLvnK-wztpbSc35AV1mtaag-5EQNEXyH6CUDm40NTthifNZjlS9-IlAtCPG9bwqPcoAZGWhtm0eCq09FAE0rHv5AMFvBkKJAP20TVEVyN2uCuQohy6BkVz5LRYANY6e2f44dNQ_xPmKss89xv4Sf8zxe-n9g6LG8ZOjCDm4FEa2odf8GNKdyB9Wciwl5Pz-t283us8Ep888b16BT_ScuYgOMCVbl6_aR3LKCs8ILq9E9x7T_vM4GCZ67gtlp5g"/>
+<div class="absolute top-4 right-4">
+<span class="bg-primary/10 backdrop-blur-md text-primary px-3 py-1 rounded-full text-[10px] font-label font-bold border border-primary/20 uppercase">Design</span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<h4 class="font-headline text-xl font-bold text-white">Sistema Nexus Alpha</h4>
+<div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-zinc-500 text-xs">Progresso: 75%</span>
+<div class="flex -space-x-2">
+<img alt="Team 1" class="w-6 h-6 rounded-full border border-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeTcZYrzjkmTHV60ZeyTbYmnM1qZc0IechTXaRpo9-81cYMJH-YVdDkI-JnCFt1GHXXDlftPJ-k6s9e8r46OBCxkucE0U3y6-gZseuhIVxeSj4u7udCLzE7Q2rdVHTbMcrjuyV3u11GiP_9DlkjXkQ5CDM4ZDg1UNdOjmYWEr-7R9AuPuRX-iSc8nQGC0AKVlgKHCAkiWjD1OUHlLOtDOkGTyYiVMliQvF_HhSYfX81MDMUNy-Y5Sxs8GAH5A4siqVoMHLHFDExA"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-surface-container-high flex items-center justify-center text-[8px] font-bold text-zinc-400">+3</div>
+</div>
+</div>
+</div>
+</a>
+<!-- Project Card 2 -->
+<a class="glass-panel rounded-3xl overflow-hidden group refractive-border block active:scale-[0.98] transition-transform duration-300" href="{{DATA:SCREEN:SCREEN_32}}">
+<div class="h-40 bg-surface-container-lowest relative">
+<img alt="Space Interface" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDryjbzYooeDukS10QBSWTKUJMMU-kz4Ib9UQ7jFMsjFSoaaYF5NkZbJMpMEinvsJ84xZMWo5beHTnnVB9qUV04IHPHZcpgZWCmmWAKSAKGC04RoZFJwB9Bvb-U1WwuzJ9KqPG49mDyaz10AVUdObDBdfYz_jvHYuIfK1W6LafVKv0j-QiYBff75LPvPAjMMLvR_FwbMpxqwLLdpBJpuUxK9Ex0XkYh1tFBPdjdnBOoZQyPCuqVGcaAm5mr4sxiio1VSequ0Srk-w"/>
+<div class="absolute top-4 right-4">
+<span class="bg-secondary/10 backdrop-blur-md text-secondary px-3 py-1 rounded-full text-[10px] font-label font-bold border border-secondary/20 uppercase">Core Dev</span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<h4 class="font-headline text-xl font-bold text-white">Interface Obsidian OS</h4>
+<div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-1/3"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-zinc-500 text-xs">Progresso: 32%</span>
+<div class="flex -space-x-2">
+<img alt="Team 3" class="w-6 h-6 rounded-full border border-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC94BcShJGEaFp_crLyz38uKCZD6qsBWK3V-hqSz5SFbMY7lnCUs_9sFO6zCFrMiMqSAUtJ0vnGyT3V9DTflG1gfGeFe9-6PyYWvj19JMtBVQhb1CliGhNNNgtJHDccfpcqrU8R_Y0AGm7qkCwey-hjuVMgGnmx3CQTZ0AmMS6w7aZJb6oM6Fl-HG00wOyuvDZXs9eSVfa9VjAaZpFVj2L1Wn5A3rB76Ltl-rd9LEBffuEJoA-7_iQDbP3Pvrqp5AIKTszor9yUDw"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-surface-container-high flex items-center justify-center text-[8px] font-bold text-zinc-400">+1</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- Recent Leads (1/3) -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-headline text-2xl font-bold tracking-tight text-white">Leads Recentes</h3>
+<span class="bg-surface-container-high text-zinc-400 px-2 py-0.5 rounded text-[10px] font-label uppercase">Hoje</span>
+</div>
+<div class="glass-panel rounded-3xl p-2 refractive-border">
+<div class="space-y-1">
+<!-- Lead Item 1 -->
+<div class="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-primary text-lg">person</span>
+</div>
+<div>
+<div class="text-sm font-bold text-white">Beatriz Silva</div>
+<div class="text-[10px] text-zinc-500 font-label uppercase">SaaS Enterprise</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-surface-container-high text-cyan-400 hover:brightness-125 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Lead Item 2 -->
+<div class="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-secondary text-lg">store</span>
+</div>
+<div>
+<div class="text-sm font-bold text-white">Marcos Viana</div>
+<div class="text-[10px] text-zinc-500 font-label uppercase">E-commerce UI</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-surface-container-high text-cyan-400 hover:brightness-125 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Lead Item 3 -->
+<div class="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-primary-container text-lg">rocket_launch</span>
+</div>
+<div>
+<div class="text-sm font-bold text-white">Clara Duarte</div>
+<div class="text-[10px] text-zinc-500 font-label uppercase">Brand Identity</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-surface-container-high text-cyan-400 hover:brightness-125 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-2 p-4 text-[10px] font-label font-bold text-zinc-500 hover:text-primary transition-colors tracking-widest uppercase">
+                    Carregar mais leads
+                </button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#131220]/80 backdrop-blur-2xl flex justify-around items-center px-4 pb-safe z-50 border-t border-white/5 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-cyan-400 scale-110 brightness-125 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_17}}">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Início</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_20}}">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Projetos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_32}}">
+<span class="material-symbols-outlined text-primary-container text-4xl">add_circle</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Novo</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_30}}">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Perfil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Ajustes</span>
+</a>
+</nav>
+<!-- Contextual FAB -->
+<a class="fixed bottom-24 right-6 w-14 h-14 bg-gradient-to-br from-primary to-primary-container rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all z-40" href="{{DATA:SCREEN:SCREEN_32}}">
+<span class="material-symbols-outlined text-on-primary font-bold">bolt</span>
+</a>
+</body></html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#bbc9cf",
+              "surface-tint": "#47d6ff",
+              "primary-fixed-dim": "#47d6ff",
+              "on-tertiary-container": "#514d52",
+              "secondary": "#a0cafc",
+              "on-tertiary-fixed": "#1d1b1f",
+              "on-secondary": "#003258",
+              "outline": "#859399",
+              "on-error-container": "#ffdad6",
+              "surface-container-low": "#1b1a28",
+              "surface-container-highest": "#353343",
+              "surface-container": "#1f1e2d",
+              "tertiary-fixed": "#e7e0e6",
+              "secondary-fixed": "#d1e4ff",
+              "inverse-surface": "#e4e0f5",
+              "tertiary": "#e1dbe1",
+              "primary": "#a5e7ff",
+              "on-secondary-container": "#92bced",
+              "primary-fixed": "#b6ebff",
+              "on-tertiary": "#322f34",
+              "on-background": "#e4e0f5",
+              "tertiary-container": "#c5bfc5",
+              "on-primary-container": "#00566a",
+              "surface-bright": "#393747",
+              "on-primary": "#003543",
+              "surface": "#131220",
+              "on-secondary-fixed": "#001d36",
+              "primary-container": "#00d2ff",
+              "surface-container-lowest": "#0e0d1a",
+              "tertiary-fixed-dim": "#cbc5ca",
+              "secondary-fixed-dim": "#a0cafc",
+              "surface-container-high": "#2a2837",
+              "surface-dim": "#131220",
+              "secondary-container": "#1d4b77",
+              "inverse-primary": "#00677f",
+              "error-container": "#93000a",
+              "on-primary-fixed": "#001f28",
+              "on-secondary-fixed-variant": "#1a4974",
+              "on-primary-fixed-variant": "#004e60",
+              "on-tertiary-fixed-variant": "#49454a",
+              "inverse-on-surface": "#302f3e",
+              "on-error": "#690005",
+              "error": "#ffb4ab",
+              "outline-variant": "#3c494e",
+              "on-surface": "#e4e0f5",
+              "surface-variant": "#353343",
+              "background": "#11101E"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #11101E;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(71, 214, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(160, 202, 252, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(29, 75, 119, 0.1) 0%, transparent 60%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(71, 214, 255, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+        body::before { top: -100px; left: -100px; }
+        body::after { bottom: 100px; right: -50px; background: radial-gradient(circle, rgba(160, 202, 252, 0.08) 0%, transparent 70%); }
+
+        .glass-card {
+            background: rgba(53, 51, 67, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(165, 231, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBGlaipuMbbGlFUB14pRVLodknbDGy4WnAyf_V3ho4NXark_OEsSs3oFjqB4A7tqZaTF4SIrXONJYj9P8_90PV5kCdgza4zvkr8TYWElsHd2ul75Nw8QSqJhpKOHIbVw2jgQzcpS2WVZ7QSxND_K_U-Ww9lifqWN_MxERtybCNZiAEYXfSlakKA5fmkVJ_VwLUIh-wOYnQCAP7tuB2CnaY1JqVM4M4xFywGu6VjQuc5ZdRYDDZ3TV4G-1_i5W4_ruVPS8BW7l_i4w);
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml;filter=url(%23noiseFilter) <svg xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"noiseFilter\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter></svg>");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .kanban-board {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .kanban-board::-webkit-scrollbar { display: none; }
+        .kanban-column {
+            min-width: 300px;
+            max-width: 300px;
+        }
+        .neon-alert-red {
+            box-shadow: 0 0 15px rgba(255, 180, 171, 0.5);
+            animation: pulse-red-neon 1.5s infinite ease-in-out;
+            border-color: rgba(255, 180, 171, 0.4);
+        }
+        @keyframes pulse-red-neon {
+            0%, 100% { opacity: 1; box-shadow: 0 0 15px rgba(255, 180, 171, 0.6); }
+            50% { opacity: 0.8; box-shadow: 0 0 5px rgba(255, 180, 171, 0.2); }
+        }
+        .ghost-border-top {
+            border-top: 1px solid rgba(165, 231, 255, 0.2);
+            border-left: 1px solid rgba(165, 231, 255, 0.1);
+        }
+        .progress-fill {
+            transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(165, 231, 255, 0.1);
+            border-radius: 10px;
+        }
+        .inertia-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 1.5rem;
+            cursor: grab;
+            user-select: none;
+        }
+        .inertia-scroll:active { cursor: grabbing; }
+    </style>
+</head>
+<body class="font-body text-on-surface">
+<div class="noise-overlay"></div>
+<!-- Header -->
+<header class="bg-[#131220]/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-white/5 h-16 flex items-center px-4">
+<div class="flex-1 flex items-center">
+<button class="material-symbols-outlined hover:bg-white/5 p-2 rounded-full transition-all">menu</button>
+</div>
+<div class="flex-1 flex justify-center">
+<img alt="Logo Kayque Brito" class="h-5 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uhyninA9KX2Bvi7l-XqRcJdz38z615RfSTk9VFnBBZH4DQ7fZTWbl68G_Hb85aJQnm3wm1ud-KfzTU-lZCmeEFSL9J3LoCP5Oum0yelGsdM8NNUD35SHE-G7hgig4KPHhKD40p3Bu076_tQzRdEeoXAqwt3IdZz9wj3HLVTGJslGFY_vYlaxtPixYypUFkJzA1DxIPh3ZA9JXYNbrM0mPtNUEftC8-_i6FlwGWlrvji8-qPnRx_CHTHM3HltUw7sb6XNHiYhanT"/>
+</div>
+<div class="flex-1 flex justify-end items-center gap-3">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors text-xl">search</button>
+<div class="w-8 h-8 rounded-full border border-primary/20 overflow-hidden">
+<img alt="Perfil" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa1iqTIAB-DM4X2w65ckjdpNZTkx3v7HVw91XdBCBWTpCYOKyfCLdOtLcIrl3YV9HPpqbo7f-WbZReFyXQv7jU_bLN4O8VzHTCCxc3qKJ2a1JJVRl6zd8G5wGiPCaK5KKK2iU4eHEcbfzHOi_JEx21YGWPkxyr9oRRFUD2fssye0wyflStfIsEtTC3NSD3qo4xrmtGIzsoxcSqan22yLcggboMRiKYMu-1M-d_GKmbA-7-jBY2DZ76jxcuIAQlLUZt5AHt7gXVig"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-[1200px] mx-auto">
+<!-- Dashboard Header -->
+<div class="mb-8">
+<span class="text-[10px] text-primary tracking-[0.3em] font-label font-bold uppercase block mb-1">Área de Trabalho</span>
+<div class="flex justify-between items-center">
+<h2 class="text-3xl font-headline font-bold tracking-tight text-on-background">Sprint Alpha-7</h2>
+<div class="flex gap-2">
+<button class="p-2.5 bg-surface-container-highest/50 glass-card rounded-xl">
+<span class="material-symbols-outlined text-xl">tune</span>
+</button>
+<button class="p-2.5 bg-gradient-to-tr from-primary to-primary-container text-on-primary rounded-xl shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Kanban Board with Inertia feel -->
+<div class="inertia-scroll custom-scrollbar">
+<!-- Backlog -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+<h3 class="font-headline font-bold text-sm tracking-wider uppercase text-on-surface-variant">Backlog</h3>
+<span class="text-[10px] font-label bg-white/5 px-2 py-0.5 rounded-full">04</span>
+</div>
+</div>
+<div class="glass-card ghost-border-top rounded-2xl p-5 flex flex-col gap-4 hover:scale-[1.01] transition-all duration-300">
+<div class="flex justify-between">
+<span class="text-[9px] font-bold px-2 py-0.5 bg-secondary-container/30 text-secondary rounded uppercase tracking-widest">Interface</span>
+<div class="w-5 h-5 rounded-full bg-slate-700 overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgL8cXYbBRZ3ODVuzBIQQs5b83V-I-zBM5ykGIT2aRTJ6VFdCwgMClDdaExcYAFxkN8fhNNq_e5xGRxc1Zz5clB1z7Eouvgp-GGLNG-amTwQdTXtY8ij57orgfk1-ICMA60dHo0TNpTAuFJVwNyqxRF4N0k2L-79zGCGFKqI649HAjD71wUZues3TYkZQsYFWZZVDYizB54o17fzO1QHYPS2aAENkbcCoOgPPMm-t9xWWnnBCh-ov721i9tQudIrbDS2wtAjtsiQ"/>
+</div>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base leading-tight mb-1">Refatoração Glass</h4>
+<p class="text-on-surface-variant text-xs line-clamp-2 leading-relaxed">Implementar novas camadas de blur e ruído digital em modais core.</p>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between text-[9px] font-label font-bold uppercase text-on-surface-variant">
+<span>Progresso</span>
+<span>15%</span>
+</div>
+<div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+<div class="progress-fill h-full w-[15%] bg-primary"></div>
+</div>
+</div>
+</div>
+<div class="glass-card ghost-border-top rounded-2xl p-5 flex flex-col gap-4 opacity-80">
+<span class="text-[9px] font-bold px-2 py-0.5 bg-primary/10 text-primary w-fit rounded uppercase tracking-widest">DevOps</span>
+<h4 class="font-headline font-bold text-base leading-tight">CI/CD Pipeline</h4>
+<div class="flex justify-between items-center text-[10px] text-on-surface-variant">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span><span>Amanhã</span></div>
+<span class="material-symbols-outlined text-sm">link</span>
+</div>
+</div>
+</div>
+<!-- Em Execução -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<h3 class="font-headline font-bold text-sm tracking-wider uppercase text-primary">Ativo</h3>
+<span class="text-[10px] font-label bg-primary/10 text-primary px-2 py-0.5 rounded-full">02</span>
+</div>
+</div>
+<!-- Expired Task with Red Neon -->
+<div class="glass-card ghost-border-top rounded-2xl p-5 flex flex-col gap-4 neon-alert-red scale-[1.02] border-error/50">
+<div class="flex justify-between items-start">
+<span class="text-[9px] font-bold px-2 py-0.5 bg-error/20 text-error rounded-full uppercase tracking-widest border border-error/30">Expirado</span>
+<div class="w-5 h-5 rounded-full bg-slate-700 overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYDEMludsCMFh6S11mhu5bkj_3uM8sRlo7DtthUyw5vHwKNSgb_KX9HiACVqpSCSXNPX6l-67Ynp51Pdj7rXZNI-gKxGUxpeIGiur9ilDQlYRNyjRNGhOVkgM3NC3DLc4bi-lczHCCw32TFUNqTjk5w7T_F3eIY0XIbLXvpFH6rC4oTEP8eVjA4ONXI6_g-kPZvx240Jw--LvIAi0ZD5TK6kBFRciY9yARRu9LsOBqH3MnyBI3S_DVp1kbZ3VLL0s73xI1-nYfZw"/>
+</div>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base leading-tight mb-1 text-on-background">Bug Fix: Auth Leak</h4>
+<p class="text-on-surface-variant text-xs">Correção crítica no middleware JWT.</p>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between text-[9px] font-label font-bold uppercase text-error">
+<span>Crítico</span>
+<span>80%</span>
+</div>
+<div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+<div class="progress-fill h-full w-[80%] bg-error shadow-[0_0_10px_#ffb4ab]"></div>
+</div>
+</div>
+</div>
+<div class="glass-card ghost-border-top rounded-2xl p-5 flex flex-col gap-4">
+<span class="text-[9px] font-bold px-2 py-0.5 bg-secondary-container/30 text-secondary w-fit rounded uppercase tracking-widest">Dashboard</span>
+<h4 class="font-headline font-bold text-base leading-tight">Widgets Analíticos</h4>
+<div class="w-full h-1 bg-white/5 rounded-full overflow-hidden mt-1">
+<div class="progress-fill h-full w-[45%] bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Revisão -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<h3 class="font-headline font-bold text-sm tracking-wider uppercase text-on-surface-variant">Revisão</h3>
+</div>
+</div>
+<div class="glass-card ghost-border-top rounded-2xl p-5 flex flex-col gap-4 border-dashed border-primary/20 opacity-60">
+<h4 class="font-headline font-bold text-base leading-tight">API Endpoint v2</h4>
+<div class="flex items-center gap-2 text-primary text-[10px] font-bold">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span>PRONTO</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-sm bg-[#131220]/70 backdrop-blur-3xl rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-2 z-50">
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center flex-1 py-2 text-slate-500 hover:text-white transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[9px] font-bold mt-1 uppercase tracking-widest">Início</span>
+</a>
+<a class="flex flex-col items-center flex-1 py-2 text-slate-500 hover:text-white transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-[9px] font-bold mt-1 uppercase tracking-widest">Projetos</span>
+</a>
+<div class="px-1">
+<a class="flex flex-col items-center bg-primary/10 text-primary px-5 py-2 rounded-2xl border border-primary/20 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">assignment</span>
+<span class="text-[9px] font-bold mt-1 uppercase tracking-widest">Tarefas</span>
+</a>
+</div>
+<a class="flex flex-col items-center flex-1 py-2 text-slate-500 hover:text-white transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[9px] font-bold mt-1 uppercase tracking-widest">Perfil</span>
+</a>
+</div>
+</nav>
+<!-- FAB -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-gradient-to-tr from-primary to-primary-container text-on-primary rounded-full shadow-2xl shadow-primary/20 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

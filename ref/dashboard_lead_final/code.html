@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #11101E;
+        }
+        .glass-card {
+            background: rgba(53, 51, 67, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
+            padding: 1px;
+            pointer-events: none;
+        }
+        .noise-texture {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .sphere {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.3;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, 40px) scale(1.1); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#2a2837",
+                        "secondary": "#a0cafc",
+                        "surface-container-lowest": "#0e0d1a",
+                        "on-tertiary": "#322f34",
+                        "primary": "#a5e7ff",
+                        "surface-tint": "#47d6ff",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#c5bfc5",
+                        "on-surface-variant": "#bbc9cf",
+                        "inverse-on-surface": "#302f3e",
+                        "on-secondary-container": "#92bced",
+                        "on-secondary-fixed": "#001d36",
+                        "on-error": "#690005",
+                        "surface-variant": "#353343",
+                        "primary-fixed-dim": "#47d6ff",
+                        "tertiary-fixed": "#e7e0e6",
+                        "surface": "#131220",
+                        "on-tertiary-fixed": "#1d1b1f",
+                        "on-primary": "#003543",
+                        "on-primary-fixed-variant": "#004e60",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00566a",
+                        "on-primary-fixed": "#001f28",
+                        "primary-container": "#00d2ff",
+                        "surface-dim": "#131220",
+                        "tertiary": "#e1dbe1",
+                        "surface-bright": "#393747",
+                        "secondary-fixed": "#d1e4ff",
+                        "on-tertiary-fixed-variant": "#49454a",
+                        "outline-variant": "#3c494e",
+                        "outline": "#859399",
+                        "on-secondary-fixed-variant": "#1a4974",
+                        "secondary-container": "#1d4b77",
+                        "background": "#11101E",
+                        "surface-container-highest": "#353343",
+                        "inverse-primary": "#00677f",
+                        "on-surface": "#e4e0f5",
+                        "surface-container-low": "#1b1a28",
+                        "secondary-fixed-dim": "#a0cafc",
+                        "on-background": "#e4e0f5",
+                        "on-secondary": "#003258",
+                        "inverse-surface": "#e4e0f5",
+                        "on-tertiary-container": "#514d52",
+                        "surface-container": "#1f1e2d",
+                        "primary-fixed": "#b6ebff",
+                        "tertiary-fixed-dim": "#cbc5ca"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+<!-- Animated Background Spheres -->
+<div class="sphere bg-primary-container/20 w-[400px] h-[400px] top-[-10%] left-[-10%]"></div>
+<div class="sphere bg-on-secondary-container/20 w-[300px] h-[300px] bottom-[10%] right-[-5%]" style="animation-delay: -5s;"></div>
+<div class="sphere bg-secondary-container/15 w-[250px] h-[250px] top-[40%] left-[60%]" style="animation-delay: -10s;"></div>
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-[#11101E]/80 backdrop-blur-xl border-b border-white/5 shadow-xl">
+<div class="flex justify-between items-center px-6 py-3 w-full">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="Maria Clara" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI72TZioiXHQr5ot7iE0OSb9R-w3-XoYKQJB9ihQF6J03llTUv6XRAHRGrsgs6UJoBLR-vfekHRCFRvf8zvBkxYHcMcc7GWdipYscx_igzKjs7cABd-qNOTtsU-Y4L_IrNwKUF1OSfxRPZPUSb34ddpTuI3zzSozwVDFJ7hVx_q8qnXqqy6N6PpZw3dyJGCCG5R1eZ1zgPzUTlWzmVg99a9lp7Z3Y260B-JXK-vdELx-aEUPAb_rHEypi9NC_WDb2Ga_UMS-dtpA"/>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<img alt="Logo" class="h-6 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uhyninA9KX2Bvi7l-XqRcJdz38z615RfSTk9VFnBBZH4DQ7fZTWbl68G_Hb85aJQnm3wm1ud-KfzTU-lZCmeEFSL9J3LoCP5Oum0yelGsdM8NNUD35SHE-G7hgig4KPHhKD40p3Bu076_tQzRdEeoXAqwt3IdZz9wj3HLVTGJslGFY_vYlaxtPixYypUFkJzA1DxIPh3ZA9JXYNbrM0mPtNUEftC8-_i6FlwGWlrvji8-qPnRx_CHTHM3HltUw7sb6XNHiYhanT"/>
+</div>
+<button class="relative active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-cyan-400 text-2xl">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto space-y-10">
+<!-- Welcome Section -->
+<section class="space-y-2">
+<h1 class="font-headline text-4xl font-bold tracking-tight text-on-surface">
+                Olá, <span class="text-primary-container">Maria Clara</span>
+</h1>
+<p class="font-body text-on-surface-variant text-lg">Bem-vinda de volta ao seu painel de alta performance.</p>
+</section>
+<!-- Metrics & Plan Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Plan Status Card -->
+<div class="glass-card p-6 rounded-3xl col-span-1 md:col-span-2 flex flex-col justify-between">
+<div class="noise-texture"></div>
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-primary-container mb-2 block">Status da Conta</span>
+<h2 class="font-headline text-2xl font-bold">Assinante Limitado</h2>
+</div>
+<div class="bg-primary-container/10 p-3 rounded-2xl border border-primary-container/20">
+<span class="material-symbols-outlined text-primary-container">verified_user</span>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<div class="flex justify-between text-sm font-label">
+<span class="text-on-surface-variant">Uso de Armazenamento</span>
+<span class="text-on-surface">85%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[85%]"></div>
+</div>
+<p class="text-xs text-on-surface-variant italic">Seu plano atual permite apenas 5 projetos ativos simultâneos.</p>
+</div>
+</div>
+<!-- CTA Upgrade Card -->
+<div class="bg-primary-container rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-primary leading-tight">Desbloqueie o Poder Total</h3>
+<p class="font-body text-sm text-on-primary/80 mt-2">Acesso ilimitado, automações avançadas e suporte prioritário.</p>
+</div>
+<button class="mt-6 w-full py-3 bg-on-primary text-primary-container font-headline font-bold rounded-xl active:scale-95 transition-all" onclick="window.location.href='{{DATA:SCREEN:SCREEN_24}}'">
+                    UPGRADE PRO
+                </button>
+</div>
+</div>
+<!-- Exclusive Banner -->
+<div class="glass-card rounded-3xl p-1 overflow-hidden">
+<div class="relative h-48 w-full rounded-[22px] overflow-hidden">
+<img alt="Upgrade Banner" class="w-full h-full object-cover brightness-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB64wSKwrJUzTMLbjDIzGhEAHp8DTDWTxq5e7lZrpcJhr6Q_PSXbSN7YiPAVp5ToSvAbS_HjJSIF-7If02OEWJ9nPoPuHa94k7XmElOtievtG-SxZlhmA-C0xArAvbx8zHGSyWhkaj18XwF-vnNBgRzxSBoYCDiZ1MQxNgGzdWEcFfk_7IylDShE3CECuwl7aeF2bVvTYonNimpbOViEgM1Di3VcSlU7bDaiZz-zlIYgaODKP8-I66xhneyl9riQbcQP1Y1RXa3A"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-center">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-cyan-400 mb-2">Oferta Exclusiva</span>
+<h2 class="font-headline text-2xl font-bold text-white max-w-md">Transforme sua gestão com inteligência artificial preditiva.</h2>
+<div class="mt-4 flex items-center gap-2 text-cyan-300 font-label text-sm font-semibold">
+                        Saber mais <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Free Courses Carousel -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline text-2xl font-bold">Cursos Gratuitos</h3>
+<p class="text-on-surface-variant font-body">Aprimore suas habilidades técnicas</p>
+</div>
+<button class="text-primary-container font-label text-sm flex items-center gap-1 hover:underline">
+                    Ver todos <span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x">
+<!-- Course Card 1 -->
+<div class="glass-card min-w-[280px] md:min-w-[320px] rounded-3xl p-4 snap-start">
+<div class="relative h-40 w-full rounded-2xl overflow-hidden mb-4">
+<img alt="Mastering CRM" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoEZWY32h1RwQZVbaeHcfX2OUmA1PLvUwnGQNISWvbkb3PXqIa4kpaU7LXThon12SNQGfLtA0_6uauuja3qKEHzXLsgocqIM60QO--Egiczr1DyK9E8tVNaHEvmzFmgQeL4C1ZQ0cnLq4AsPfCWRWF-R3zPams2L5pxxBkrhhjjnVDO3J5vkAjWvWgLr_ujapV-ys8nIuvVBiZMwjWYeR95j6gjdDuyWZ6yuNDA4Vw4hYfechbbRqTbXZGiSENY8B9h0jK250zw"/>
+<div class="absolute top-2 right-2 bg-surface/80 backdrop-blur px-2 py-1 rounded-lg">
+<span class="text-[10px] font-label font-bold text-primary-container uppercase">Tech</span>
+</div>
+</div>
+<h4 class="font-headline font-bold text-lg leading-tight mb-2">Dominando o Obsidian CRM</h4>
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-label mt-4">
+<span>Progresso: 65%</span>
+<span>4h totais</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full mt-2">
+<div class="h-full bg-primary-container w-[65%] shadow-[0_0_8px_rgba(0,210,255,0.5)]"></div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="glass-card min-w-[280px] md:min-w-[320px] rounded-3xl p-4 snap-start">
+<div class="relative h-40 w-full rounded-2xl overflow-hidden mb-4">
+<img alt="Data Analytics" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9NNrSyDQN4hdtixG9GPzXT5k_Qc4OoU2vzpCBugKGJYcYrjGWbmeiXpRjcgcYIglZJferAyLeCQIX2yA2gBsn1cJsig78HXCjbiztMld9z3hStH9KFn0PlDGHIlbMjY0qy32m23OggQwCPOA8vS3khKpUivvPIUtZE-hADWcywXp7FffenOPf_pNmr2vzmcJ2F7_lQEHfJBOctFX49Kd2dz4eCmETbdy4_v2jCAeucrjNYsN3duK-UZXLd7Z8NdLWBV4cS5FHAw"/>
+<div class="absolute top-2 right-2 bg-surface/80 backdrop-blur px-2 py-1 rounded-lg">
+<span class="text-[10px] font-label font-bold text-primary-container uppercase">Dados</span>
+</div>
+</div>
+<h4 class="font-headline font-bold text-lg leading-tight mb-2">Análise de Dados para Leads</h4>
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-label mt-4">
+<span>Progresso: 12%</span>
+<span>8h totais</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full mt-2">
+<div class="h-full bg-primary-container w-[12%] shadow-[0_0_8px_rgba(0,210,255,0.5)]"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#11101E]/90 backdrop-blur-2xl flex justify-around items-center px-4 pb-safe z-50 border-t border-white/5 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-cyan-400 scale-110 brightness-125 transition-all duration-300 ease-out" href="{{DATA:SCREEN:SCREEN_23}}">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Início</span>
+</a>
+<!-- Projetos -->
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_20}}">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Projetos</span>
+</a>
+<!-- Novo -->
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_32}}">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Novo</span>
+</a>
+<!-- Perfil -->
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="{{DATA:SCREEN:SCREEN_30}}">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Perfil</span>
+</a>
+<!-- Ajustes -->
+<a class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Ajustes</span>
+</a>
+</nav>
+</body></html>

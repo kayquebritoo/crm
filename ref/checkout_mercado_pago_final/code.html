@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#bbc9cf",
+              "surface-tint": "#47d6ff",
+              "primary-fixed-dim": "#47d6ff",
+              "on-tertiary-container": "#514d52",
+              "secondary": "#a0cafc",
+              "on-tertiary-fixed": "#1d1b1f",
+              "on-secondary": "#003258",
+              "outline": "#859399",
+              "on-error-container": "#ffdad6",
+              "surface-container-low": "#1b1a28",
+              "surface-container-highest": "#353343",
+              "surface-container": "#1f1e2d",
+              "tertiary-fixed": "#e7e0e6",
+              "secondary-fixed": "#d1e4ff",
+              "inverse-surface": "#e4e0f5",
+              "tertiary": "#e1dbe1",
+              "primary": "#a5e7ff",
+              "on-secondary-container": "#92bced",
+              "primary-fixed": "#b6ebff",
+              "on-tertiary": "#322f34",
+              "on-background": "#e4e0f5",
+              "tertiary-container": "#c5bfc5",
+              "on-primary-container": "#00566a",
+              "surface-bright": "#393747",
+              "on-primary": "#003543",
+              "surface": "#131220",
+              "on-secondary-fixed": "#001d36",
+              "primary-container": "#00d2ff",
+              "surface-container-lowest": "#0e0d1a",
+              "tertiary-fixed-dim": "#cbc5ca",
+              "secondary-fixed-dim": "#a0cafc",
+              "surface-container-high": "#2a2837",
+              "surface-dim": "#131220",
+              "secondary-container": "#1d4b77",
+              "inverse-primary": "#00677f",
+              "error-container": "#93000a",
+              "on-primary-fixed": "#001f28",
+              "on-secondary-fixed-variant": "#1a4974",
+              "on-primary-fixed-variant": "#004e60",
+              "on-tertiary-fixed-variant": "#49454a",
+              "inverse-on-surface": "#302f3e",
+              "on-error": "#690005",
+              "error": "#ffb4ab",
+              "outline-variant": "#3c494e",
+              "on-surface": "#e4e0f5",
+              "surface-variant": "#353343",
+              "background": "#11101E"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            animation: {
+              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #11101E;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .glass-card {
+        background: rgba(31, 30, 45, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+      .glass-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA2YFuHuc5BscV4zcltMBOIeWOHQNuS-FS4_6fEto6rZ7r0mg0vi9LLf12URMOaCmCqoTiwxrMSJ155uHHhiYj4XODPrEwMv5kVVx8AZ56jXhLfKsDVJYJUJ44szMfmQMG9qzvwuNbK8NfMIZx5kx5bJK-8pySCuRhtdyyzSVm3gnjj42MIin2tt8zXab4zoyxBqaQvUyXrUbIiK4DfEOvN2vjfFMssTLkJxRyGwBz3kU5HKXuJWUh2mR8lPMlFuGy30LPYpGxNug);
+        opacity: 0.03;
+        pointer-events: none;
+      }
+      .ghost-border-top {
+        border-top: 1px solid rgba(165, 231, 255, 0.2);
+      }
+      .neon-glow {
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+      }
+      .sphere-gradient {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: -1;
+        opacity: 0.15;
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0) translateX(0); }
+        50% { transform: translateY(-20px) translateX(10px); }
+      }
+      .animate-float {
+        animation: float 10s ease-in-out infinite;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+</head>
+<body class="font-body text-on-background antialiased selection:bg-primary/30">
+<!-- Subtle Animated Gradient Spheres -->
+<div class="sphere-gradient bg-primary w-[300px] h-[300px] top-[-5%] left-[-10%] animate-float"></div>
+<div class="sphere-gradient bg-secondary w-[400px] h-[400px] bottom-[10%] right-[-15%] animate-float" style="animation-delay: -3s;"></div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#11101E]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,210,255,0.08)] flex justify-between items-center px-6 h-16">
+<div class="flex items-center w-1/4">
+<a class="text-[#a5e7ff] active:scale-95 duration-200 hover:bg-white/5 p-2 rounded-xl transition-colors" href="#" onclick="window.location.href='{{DATA:SCREEN:SCREEN_23}}'; return false;">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+</div>
+<div class="flex justify-center flex-1">
+<img alt="Kayque Brito Logo" class="h-5 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uhyninA9KX2Bvi7l-XqRcJdz38z615RfSTk9VFnBBZH4DQ7fZTWbl68G_Hb85aJQnm3wm1ud-KfzTU-lZCmeEFSL9J3LoCP5Oum0yelGsdM8NNUD35SHE-G7hgig4KPHhKD40p3Bu076_tQzRdEeoXAqwt3IdZz9wj3HLVTGJslGFY_vYlaxtPixYypUFkJzA1DxIPh3ZA9JXYNbrM0mPtNUEftC8-_i6FlwGWlrvji8-qPnRx_CHTHM3HltUw7sb6XNHiYhanT"/>
+</div>
+<div class="flex items-center justify-end w-1/4">
+<div class="h-10 w-10 rounded-full border border-primary/20 bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6r9KV9a8_oJryCrjKNmLojgvEPSzBbYu15oV-tjaIlU3dxh_mb4Yj-vu6gs_yLSwGjAxxiLm8NIOxSwLAWN32iagjIJ3ihPSlCNxT906glNJVirKzUk48prdSkLV5V7Nx1VCmQJ-50J2iRXRcI3xdZqwGHOXecQl4OgVk3lIM8LFqMEgHTePeO-5oXM5c7WoLyhz9zS1bFcXDAA3QtEQsbKTUnQClyXMeohQxNHnq4tX8pF5YMgmqOZVkN1_X8qVKV46QuqX8DA"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-4 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Side: Checkout Details -->
+<div class="lg:col-span-7 space-y-6">
+<section>
+<h1 class="font-headline text-3xl font-bold tracking-tighter text-primary mb-2">Finalizar Pagamento</h1>
+<p class="text-on-surface-variant font-label text-sm uppercase tracking-widest opacity-70">Checkout Seguro via Mercado Livre</p>
+</section>
+<!-- Payment Methods -->
+<div class="glass-card rounded-2xl p-6">
+<h2 class="font-headline text-xl font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payments</span>
+                Método de Pagamento
+            </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- PIX Option -->
+<label class="relative cursor-pointer group">
+<input checked="" class="peer hidden" name="payment" type="radio"/>
+<div class="p-4 rounded-xl border border-white/5 bg-surface-container-lowest/50 peer-checked:border-primary/50 peer-checked:bg-primary/10 transition-all duration-300 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container">qr_code_2</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">PIX</p>
+<p class="text-xs text-on-surface-variant">Aprovação instantânea</p>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Credit Card Option -->
+<label class="relative cursor-pointer group">
+<input class="peer hidden" name="payment" type="radio"/>
+<div class="p-4 rounded-xl border border-white/5 bg-surface-container-lowest/50 peer-checked:border-primary/50 peer-checked:bg-primary/10 transition-all duration-300 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">credit_card</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Cartão</p>
+<p class="text-xs text-on-surface-variant">Até 12x s/ juros</p>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</label>
+</div>
+<!-- Form Inputs -->
+<div class="mt-8 space-y-4">
+<div class="relative">
+<label class="font-label text-xs uppercase tracking-tighter text-on-surface-variant block mb-1 ml-1">E-mail para entrega</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all duration-500 py-3 px-4 text-on-surface rounded-t-lg" placeholder="seu@email.com" type="email"/>
+</div>
+<div class="relative">
+<label class="font-label text-xs uppercase tracking-tighter text-on-surface-variant block mb-1 ml-1">CPF / CNPJ</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all duration-500 py-3 px-4 text-on-surface rounded-t-lg" placeholder="000.000.000-00" type="text"/>
+</div>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="flex items-center gap-3 px-4 opacity-60">
+<span class="material-symbols-outlined text-primary text-lg">verified_user</span>
+<p class="text-xs font-label">Seus dados estão protegidos com criptografia de ponta a ponta.</p>
+</div>
+</div>
+<!-- Right Side: Order Summary -->
+<div class="lg:col-span-5">
+<div class="glass-card rounded-2xl sticky top-24">
+<div class="p-6 space-y-6">
+<h2 class="font-headline text-xl font-semibold">Resumo do Pedido</h2>
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="flex items-center gap-4 group">
+<div class="w-16 h-16 rounded-xl bg-surface-container-lowest overflow-hidden flex-shrink-0">
+<img alt="Curso Obsidian" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJnSFaQmokTSu3JkjCcwHoPmFpqCYScXD5p9ZEtiUyEgOTpAtQIQvPoMNo15F1z84_bbVDwwPpWWAqhlomUCN32xeyvcXeGYz7OQPsGVlAYaDJcNlM5wEju12KArp-IvoPQG7dXcEHEJPRN4p-1xu-fYCKIWaT_F4j51SLqhzIGVlWB--sff8hhSO8KHiM2u0JWZSqakQleTqi2S-ZJCa0KKpI7XB8PP-97QUJOEQuXYFDqp0JH7eOn8NQf52P8mqDfg4z1jxfFg"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Mastering Obsidian Lens</p>
+<p class="text-xs text-on-surface-variant">Acesso Vitalício</p>
+</div>
+<p class="font-headline font-medium text-on-surface">R$ 497,00</p>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-lowest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary-container">add_circle</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Pack UI Components</p>
+<p class="text-xs text-on-surface-variant">Adicional Selecionado</p>
+</div>
+<p class="font-headline font-medium text-on-surface">R$ 47,00</p>
+</div>
+</div>
+<div class="pt-6 ghost-border-top space-y-3">
+<div class="flex justify-between text-sm text-on-surface-variant">
+<span>Subtotal</span>
+<span>R$ 544,00</span>
+</div>
+<div class="flex justify-between text-sm text-primary">
+<span>Desconto Cupom</span>
+<span>- R$ 50,00</span>
+</div>
+<div class="flex justify-between items-end pt-4">
+<div>
+<p class="text-xs font-label uppercase text-on-surface-variant tracking-widest">Total</p>
+<p class="font-headline text-3xl font-bold text-primary">R$ 494,00</p>
+</div>
+<p class="text-xs text-on-surface-variant text-right">Ou em até 12x de<br/><span class="font-bold text-on-surface">R$ 49,40</span></p>
+</div>
+</div>
+<button class="w-full py-4 rounded-xl bg-gradient-to-r from-primary-container to-primary text-on-primary font-bold text-lg neon-glow transition-all active:scale-95 duration-200 flex items-center justify-center gap-3" id="payButton" onclick="simulatePayment()">
+                    Pagar com Mercado Pago
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="flex justify-center gap-4 pt-4 grayscale opacity-40">
+<img alt="Mercado Pago" class="h-4 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB7NZxsgG_KcLZ4VbsXnqElvixBM7u8BsR5epJiva_Z4hz8yy3WC2jdOGKKFk1ciopXu0jToMtRH1twDN4ROg7oq7t7h4Q-DwWOITUsUginGN2_dudscMfK6zK6WCkaiBkwWILDkZmrm5vC5ddubfeBXrsdLlIwUcU6CFkSHlo_4YPTYh0NlSQgDClLnSvWoEXs_hhDfa-1SB7vfpQiYRJl-TCv5S7ytva_i7ClPmuroZfsSoAch8C6lNq7bHMC8UmyWqktI-acQ"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Shell (Bottom Bar for Mobile) -->
+<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-2xl border border-white/10 bg-[#131220]/70 backdrop-blur-2xl shadow-2xl z-50 flex justify-around items-center p-2 mx-auto">
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-slate-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-['Manrope'] text-[10px] font-medium uppercase tracking-widest">Início</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-slate-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-['Manrope'] text-[10px] font-medium uppercase tracking-widest">Projetos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-slate-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-['Manrope'] text-[10px] font-medium uppercase tracking-widest">Tarefas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-slate-300 transition-all active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Manrope'] text-[10px] font-medium uppercase tracking-widest">Perfil</span>
+</a>
+</nav>
+<script>
+    function simulatePayment() {
+        const btn = document.getElementById('payButton');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processando...';
+        
+        setTimeout(() => {
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Sucesso!';
+            btn.classList.remove('from-primary-container', 'to-primary');
+            btn.classList.add('bg-green-500');
+            
+            setTimeout(() => {
+                window.location.href = '{{DATA:SCREEN:SCREEN_27}}';
+            }, 1000);
+        }, 2000);
+    }
+</script>
+</body></html>

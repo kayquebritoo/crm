@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Obsidian CRM - Detalhes do Projeto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#2a2837",
+              "secondary": "#a0cafc",
+              "surface-container-lowest": "#0e0d1a",
+              "on-tertiary": "#322f34",
+              "primary": "#a5e7ff",
+              "surface-tint": "#47d6ff",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              "tertiary-container": "#c5bfc5",
+              "on-surface-variant": "#bbc9cf",
+              "inverse-on-surface": "#302f3e",
+              "on-secondary-container": "#92bced",
+              "on-secondary-fixed": "#001d36",
+              "on-error": "#690005",
+              "surface-variant": "#353343",
+              "primary-fixed-dim": "#47d6ff",
+              "tertiary-fixed": "#e7e0e6",
+              "surface": "#131220",
+              "on-tertiary-fixed": "#1d1b1f",
+              "on-primary": "#003543",
+              "on-primary-fixed-variant": "#004e60",
+              "error": "#ffb4ab",
+              "on-primary-container": "#00566a",
+              "on-primary-fixed": "#001f28",
+              "primary-container": "#00d2ff",
+              "surface-dim": "#131220",
+              "tertiary": "#e1dbe1",
+              "surface-bright": "#393747",
+              "secondary-fixed": "#d1e4ff",
+              "on-tertiary-fixed-variant": "#49454a",
+              "outline-variant": "#3c494e",
+              "outline": "#859399",
+              "on-secondary-fixed-variant": "#1a4974",
+              "secondary-container": "#1d4b77",
+              "background": "#131220",
+              "surface-container-highest": "#353343",
+              "inverse-primary": "#00677f",
+              "on-surface": "#e4e0f5",
+              "surface-container-low": "#1b1a28",
+              "secondary-fixed-dim": "#a0cafc",
+              "on-background": "#e4e0f5",
+              "on-secondary": "#003258",
+              "inverse-surface": "#e4e0f5",
+              "on-tertiary-container": "#514d52",
+              "surface-container": "#1f1e2d",
+              "primary-fixed": "#b6ebff",
+              "tertiary-fixed-dim": "#cbc5ca"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.glass-panel {
+    background: rgba(53, 51, 67, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(165, 231, 255, 0.1);
+    position: relative;
+    overflow: hidden
+    }
+.glass-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAqXFJkz3AIujjlQZQH0Y5SeWHM5QumMSliWalvH-1mBGmRvHVtnZycBWUa514c_I395hEsB-a_BO9wwXlpG4yhili-kU2ogzIKJKjXQ9qfn0sd2G4zBH6qRHbxkmOq9oFN8kF0VxMZ_pnqnJh3QVTmMfcZ_xlHQj-Mtvc520dFW7uea_xchlHj4sQVdLM_1PNDWzAxXCI1_0GQrgXPowKI217ZH6lZi6Ef9sRpeTZfzjW9IAyLsqTC0DqJCuVNAfEMeSic76YODg);
+    opacity: 0.05;
+    pointer-events: none
+    }
+.refractive-border {
+    border-top: 1px solid rgba(165, 231, 255, 0.2);
+    border-left: 1px solid rgba(165, 231, 255, 0.1);
+    border-right: 1px solid rgba(53, 51, 67, 0.05);
+    border-bottom: 1px solid rgba(53, 51, 67, 0.05)
+    }
+.glow-hover:hover {
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.15)
+    }
+.animated-sphere {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.4
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+<!-- Background Elements -->
+<div class="animated-sphere w-[500px] h-[500px] bg-secondary-container top-[-10%] left-[-10%]"></div>
+<div class="animated-sphere w-[400px] h-[400px] bg-primary-container bottom-[-5%] right-[-5%] opacity-20"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-900/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,210,255,0.08)] flex justify-between items-center px-6 py-4">
+<button class="flex items-center text-cyan-400 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="text-cyan-400 font-bold tracking-tighter text-lg uppercase font-['Space_Grotesk']">
+            Obsidian CRM
+        </div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-400" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional male software engineer with soft cinematic studio lighting and dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl5WFwfuKyD_HHeT5g3G9C43g_kQCutpOk4v0xzNZOxwJSw802RGkJlmCi8JU1etO9sigFR7snTgrpo3CPzlB-DIuwR-ldxLj5PwGAKr2O0LZYG7JpGyluVN2ogrv4eludWoCeMDJyeHY2ncoqhvB4p7X6MAGev1pKKroXVA6nup8khrGfWaIYajA87JxtmS94sMrKmvKDyxiHum-LMfEd5-MBvdJFU-sWWtsvjgK3XbBPTOVyoxERqCB8_OlTaHZaIKUGfBUJ1A"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto space-y-8">
+<!-- Hero Header -->
+<section class="space-y-2">
+<div class="flex items-center gap-2 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-sm" data-icon="folder_open">folder_open</span>
+<span class="font-label text-xs uppercase tracking-[0.1em]">Projeto #8842</span>
+</div>
+<h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight text-on-surface">Redesign E-commerce Luxo</h1>
+<p class="text-on-surface-variant font-body max-w-2xl">Modernização completa da jornada de compra para a marca de alta costura, integrando o novo sistema de checkout.</p>
+</section>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Left Column: Details Form -->
+<div class="md:col-span-7 space-y-6">
+<div class="glass-panel refractive-border rounded-3xl p-8 space-y-8">
+<h2 class="font-headline text-xl font-semibold flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="edit_note">edit_note</span>
+                        Informações Gerais
+                    </h2>
+<div class="grid grid-cols-1 gap-6">
+<div class="group">
+<label class="font-label text-[10px] uppercase tracking-widest text-outline ml-1 mb-2 block">Nome do Cliente</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-surface-variant focus:border-primary focus:ring-0 text-on-surface font-medium transition-all duration-300 py-3 px-4 rounded-t-xl" type="text" value="Maison de l'Artiste"/>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="group">
+<label class="font-label text-[10px] uppercase tracking-widest text-outline ml-1 mb-2 block">Prazo Final</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-surface-variant focus:border-primary focus:ring-0 text-on-surface font-medium transition-all duration-300 py-3 px-4 rounded-t-xl" type="text" value="24 Out 2024"/>
+<span class="material-symbols-outlined absolute right-4 top-3 text-outline text-lg" data-icon="calendar_today">calendar_today</span>
+</div>
+</div>
+<div class="group">
+<label class="font-label text-[10px] uppercase tracking-widest text-outline ml-1 mb-2 block">Valor Total</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-surface-variant focus:border-primary focus:ring-0 text-primary font-bold transition-all duration-300 py-3 px-4 rounded-t-xl" type="text" value="R$ 45.000,00"/>
+<span class="material-symbols-outlined absolute right-4 top-3 text-outline text-lg" data-icon="payments">payments</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl border border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="bolt">bolt</span>
+</div>
+<div>
+<p class="font-bold text-sm">Status do Projeto</p>
+<p class="text-xs text-outline">Em Desenvolvimento</p>
+</div>
+</div>
+<!-- Custom Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Secondary Info -->
+<div class="glass-panel refractive-border rounded-3xl p-6 flex items-center gap-6">
+<div class="w-20 h-20 rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover" data-alt="abstract artistic background with swirling deep blue and violet paint textures and shimmering metallic flakes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD80X0Aq14WLQDqOug9APdUR_qHVebc4f0y9fMQhsnGvGAt_ZEHmzGyCgijMjWFpXq6JzBDKCZGIX2C189Hgmge8UK3RYIKGk-v8VWziEiEVnX8vAMe3dl7lwRB0HNozGusrwJsD6p8KoXZJM11PR4HEgeKlCY52HRJtfkUbrRcd5Yy-aNSZY6Mwed9WEUcpwl1w-lnxXYMblyw6dAtZ2ENCs6vuwx8k0davp6A00jPg58H0WdhvrO8HqfzY4YGeL7Uzo-i26saFw"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline font-bold text-on-surface">Equipe Design</h4>
+<p class="text-sm text-outline">3 colaboradores ativos neste projeto</p>
+</div>
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface-container-high bg-zinc-800">
+<img class="w-full h-full rounded-full object-cover" data-alt="professional portrait of a creative director in a dark studio setting with moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJeL284c_MfgUEczVxEaR6bw9a87rJJ8xeSCpVhBReQ21EiCdTmvbl18cEQSaASSLuKjN775XBip8KlP625NWMwwjgcf5YfYVMzJp-QMQiJCJJLowEASCOSQfZJk0It0p2fw9mnCoovFa51LULVjyHuF3OYCL722b9Q1EDIXRS9fvudbaXbH_LHOt5g05jm6huc1Ct4VL0In5BTu45gKEyQhWCKx8YRzAMEh16BMmnBy4l2klSqDMooknZy5xYUkxvgE4lFEVVSw"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface-container-high bg-zinc-800 flex items-center justify-center text-[10px] font-bold">
+                            +2
+                        </div>
+</div>
+</div>
+</div>
+<!-- Right Column: Task List -->
+<div class="md:col-span-5">
+<div class="glass-panel refractive-border rounded-3xl p-6 h-full flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline text-xl font-semibold">Tarefas</h2>
+<button class="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center glow-hover transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+</button>
+</div>
+<div class="space-y-4 flex-1">
+<!-- Task Item -->
+<div class="p-4 bg-surface-container-high/40 rounded-2xl space-y-3 group hover:bg-surface-container-highest/60 transition-colors cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded border border-primary/50 flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary text-[14px] opacity-0 group-hover:opacity-100" data-icon="check">check</span>
+</div>
+<span class="font-medium">Definição de Personas</span>
+</div>
+<span class="label-sm text-[10px] bg-secondary-container px-2 py-0.5 rounded text-on-secondary-container uppercase font-label font-bold tracking-tighter">Design</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-label text-outline uppercase tracking-wider">
+<span>Progresso</span>
+<span>75%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[75%] shadow-[0_0_8px_rgba(0,210,255,0.4)]"></div>
+</div>
+</div>
+</div>
+<!-- Task Item -->
+<div class="p-4 bg-surface-container-high/40 rounded-2xl space-y-3 group hover:bg-surface-container-highest/60 transition-colors cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded border border-primary/50 flex items-center justify-center bg-primary/20">
+<span class="material-symbols-outlined text-primary text-[14px]" data-icon="check">check</span>
+</div>
+<span class="font-medium line-through text-outline">Benchmark Competitivo</span>
+</div>
+<span class="label-sm text-[10px] bg-secondary-container px-2 py-0.5 rounded text-on-secondary-container uppercase font-label font-bold tracking-tighter">UX</span>
+</div>
+<div class="h-1 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-full"></div>
+</div>
+</div>
+<!-- Task Item -->
+<div class="p-4 bg-surface-container-high/40 rounded-2xl space-y-3 group hover:bg-surface-container-highest/60 transition-colors cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded border border-primary/50 flex items-center justify-center group-hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary text-[14px] opacity-0" data-icon="check">check</span>
+</div>
+<span class="font-medium">Protótipo de Alta Fid.</span>
+</div>
+<span class="label-sm text-[10px] bg-secondary-container px-2 py-0.5 rounded text-on-secondary-container uppercase font-label font-bold tracking-tighter">UI</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-label text-outline uppercase tracking-wider">
+<span>Progresso</span>
+<span>20%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[20%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<button class="mt-8 w-full py-4 bg-primary text-on-primary font-bold rounded-2xl flex items-center justify-center gap-2 glow-hover active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                        Salvar Alterações
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#131220]/80 backdrop-blur-2xl border-t border-white/5 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.5)] flex justify-around items-center px-4 pb-safe z-50">
+<div class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-cyan-400 scale-110 brightness-125 transition-all duration-300 ease-out active:scale-90">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Projetos</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center -mt-8 shadow-lg shadow-cyan-400/20 text-on-primary">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</div>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Novo</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Perfil</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 opacity-70 hover:opacity-100 hover:text-cyan-200 transition-all duration-300 ease-out active:scale-90">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] mt-1">Ajustes</span>
+</div>
+</nav>
+</body></html>
