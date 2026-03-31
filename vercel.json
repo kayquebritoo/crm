@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "name": "kayque-brito-crm",
+  "cleanUrls": true,
+  "regions": ["sfo1"]
+}
